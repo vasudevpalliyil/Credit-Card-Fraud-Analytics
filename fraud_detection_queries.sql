@@ -1,4 +1,4 @@
--- how many transactions are normal vs. fraud--
+Query A
 SELECT 
     Class,
     COUNT(*) as total_transactions,
@@ -7,7 +7,7 @@ SELECT
 FROM transactions
 GROUP BY Class;
 
--- the transactions into hourly buckets (using the Time column) to see if fraud peaks at certain times.
+Query B
 SELECT 
     FLOOR(Time / 3600) as hour_of_day,
     COUNT(*) as total_fraud_incidents,
@@ -17,7 +17,7 @@ WHERE Class = 1
 GROUP BY hour_of_day
 ORDER BY total_fraud_amount DESC;
 
--- Finds all fraudulent transactions over $500
+Query C
 SELECT Time, Amount 
 FROM transactions
 WHERE Class = 1 AND Amount > 500
